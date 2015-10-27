@@ -21,10 +21,13 @@ public class DateUtilities8 {
          * date into a string
          * @param dateTime takes in a LocalDateTime object
          * @param pattern takes in the pattern the user would like to see.An example 
-         * would be "MM/dd/yyyy"
+         * would be "MM/dd/yyyy hh:mm"
          * @return the date in string format
          */
-        public String toString(LocalDateTime dateTime, String pattern){
+        public String toString(LocalDateTime dateTime, String pattern)throws IllegalArgumentException{
+            if(dateTime == null|| pattern == null || pattern.isEmpty()){
+                throw new IllegalArgumentException("a date and pattern must be provided");
+            }
         String strDate = null; 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         strDate = formatter.format(dateTime);
@@ -42,7 +45,11 @@ public class DateUtilities8 {
          * the format of "dd/MM/yyyy"
          * @return returns the date in a string format
          */
-        public String toString(LocalDate date, String pattern){
+        public String toString(LocalDate date, String pattern)throws IllegalArgumentException{
+            if(date == null || pattern == null || pattern.isEmpty()){
+                throw new IllegalArgumentException("You must provide a date and pattern");
+            }
+        
         DateTimeFormatter format = DateTimeFormatter.ofPattern(pattern);
         String dateAsString = format.format(date);
         return dateAsString;
@@ -56,7 +63,10 @@ public class DateUtilities8 {
          * order must be in year,date,month
          * @return returns date format of the string that was passed in
          */
-        public LocalDate toDate(String date){
+        public LocalDate toDate(String date)throws IllegalArgumentException{
+            if(date == null || date.isEmpty()){
+                throw new IllegalArgumentException("You must provide a date");
+            }
         String theDate = date;
         LocalDate formatted = LocalDate.parse(theDate,DateTimeFormatter.BASIC_ISO_DATE);
         return formatted;
@@ -72,7 +82,10 @@ public class DateUtilities8 {
        * @return a string date in the format of a date
        */
         
-        public LocalDate toDate(String date, String pattern){ 
+        public LocalDate toDate(String date, String pattern)throws IllegalArgumentException{
+            if(date == null || pattern == null || date.isEmpty() || pattern.isEmpty()){
+                throw new IllegalArgumentException("You must provide a date and pattern");
+            }
         String theDate = date;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         LocalDate formattedDate = LocalDate.parse(theDate,formatter);
@@ -89,7 +102,11 @@ public class DateUtilities8 {
          * to the date
          * @return the date with the weeks added to it
          */
-        public LocalDate addWeeks(LocalDate date, int numOfWeeks){
+        public LocalDate addWeeks(LocalDate date, int numOfWeeks)throws IllegalArgumentException{
+            if (date==null || numOfWeeks < 0){
+                throw new IllegalArgumentException("You must provide a date and number of weeks cannot be less than 0");
+                
+            }
         LocalDate theDate = date;
         return theDate.plusDays(numOfWeeks);
         
