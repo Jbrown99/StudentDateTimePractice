@@ -10,7 +10,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- *
+ * This class contains different methods that can be used in future projects to 
+ * handle different ways of dealing with the format of date and time. This class uses date time
+ * in the Java 8 api.
  * @author joshuabrown
  */
 public class DateUtilities8 {
@@ -33,7 +35,7 @@ public class DateUtilities8 {
         strDate = formatter.format(dateTime);
         return strDate;
          }
-        
+    
         
         
         /**
@@ -108,9 +110,11 @@ public class DateUtilities8 {
                 
             }
         LocalDate theDate = date;
-        return theDate.plusDays(numOfWeeks);
+        return theDate.plusWeeks(numOfWeeks);
         
         }
+        
+    
         
     
 }
